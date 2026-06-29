@@ -66,24 +66,35 @@ git clone https://github.com/timcsy/auto-k8s.git && cd auto-k8s && claude
 
 > 需求：plugin marketplace 方式建議 Claude Code ≥ 2.1.0；手動 / 專案方式任何版本皆可。
 
-### D. 其他 AI 工具（非 Claude）
-這些 skill 採用 [Agent Skills 開放標準](https://agentskills.io)（`SKILL.md`），多個非 Claude 工具也能讀；
-repo 根另附 [`AGENTS.md`](./AGENTS.md)（[開放標準](https://agents.md/)）作為通用入口，工具一進 repo 就有上手說明。
+### D. 其他 AI 工具（非 Claude）— 推薦用 `npx skills`
+這些 skill 採用 [Agent Skills 開放標準](https://agentskills.io)（`SKILL.md`，檔案系統格式、跨工具通用）。
+最省事的跨 agent 安裝法是 [`skills` CLI](https://www.skills.sh)（Vercel Labs，支援 40+ agent）：
 
 ```bash
-git clone https://github.com/timcsy/auto-k8s.git && cd auto-k8s
+npx skills add timcsy/auto-k8s --all                    # 互動選 agent，裝全部 7 個
+npx skills add timcsy/auto-k8s -a codex --all           # 直接裝到 Codex
+npx skills add timcsy/auto-k8s -a cursor -a claude-code --all   # 一次多個 agent
+npx skills list                                         # 檢視已安裝
 ```
 
-| 工具 | 怎麼用 |
-|---|---|
-| **OpenAI Codex CLI** | 原生讀 `AGENTS.md`；`SKILL.md` 放進其 skills 目錄即可被呼叫 |
-| **Gemini CLI** | 讀 `AGENTS.md`；支援 `SKILL.md` |
-| **Cursor** | 原生讀 `AGENTS.md`；`SKILL.md` 需手動放到其 skills 位置 |
-| **GitHub Copilot** | 讀 `AGENTS.md`；透過 VS Code agent skills 用 `SKILL.md` |
-| **Windsurf** | 原生讀 `AGENTS.md`（亦可把流程改寫成 `.windsurf/workflows/`） |
-| **純人類 / 無 AI** | 把 `skills/*/SKILL.md` 當 runbook，照 `k3s-vps-deploy` 順序手動貼指令執行 |
+或手動複製到各 agent 的 skills 目錄：
 
-> `AGENTS.md` 是常駐說明（規則/入口），`SKILL.md` 是可呼叫的技能；兩者互補。各工具放置 `SKILL.md` 的確切位置請參考該工具文件或 [agentskills.io](https://agentskills.io)。
+| 工具 | `SKILL.md` 放這裡 | 常駐入口 |
+|---|---|---|
+| **OpenAI Codex CLI** | `~/.codex/skills/`（或專案 `.codex/skills/`、`.agents/skills`） | 原生讀 [`AGENTS.md`](./AGENTS.md)（免裝） |
+| **Claude Code** | `~/.claude/skills/`（或 plugin marketplace，見上方 A） | `CLAUDE.md` |
+| **Cursor** | 手動放到其 skills 目錄 | 原生讀 `AGENTS.md` |
+| **GitHub Copilot** | 透過 VS Code agent skills | 讀 `AGENTS.md` |
+| **Gemini CLI** | 支援 `SKILL.md` | `GEMINI.md` / `AGENTS.md` |
+| **純人類 / 無 AI** | 把 `skills/*/SKILL.md` 當 runbook 手動執行 | 讀 `AGENTS.md` |
+
+手動範例（Codex）：
+```bash
+git clone https://github.com/timcsy/auto-k8s.git
+mkdir -p ~/.codex/skills && cp -r auto-k8s/skills/* ~/.codex/skills/
+```
+
+> `AGENTS.md` 是常駐說明（規則/入口），`SKILL.md` 是可呼叫的技能；兩者互補。本 repo 的 `skills/<name>/SKILL.md` 佈局即 `npx skills` 與各 agent 預期的標準結構，不需改動即可安裝。
 
 ---
 

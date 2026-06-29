@@ -66,6 +66,25 @@ git clone https://github.com/timcsy/auto-k8s.git && cd auto-k8s && claude
 
 > 需求：plugin marketplace 方式建議 Claude Code ≥ 2.1.0；手動 / 專案方式任何版本皆可。
 
+### D. 其他 AI 工具（非 Claude）
+這些 skill 採用 [Agent Skills 開放標準](https://agentskills.io)（`SKILL.md`），多個非 Claude 工具也能讀；
+repo 根另附 [`AGENTS.md`](./AGENTS.md)（[開放標準](https://agents.md/)）作為通用入口，工具一進 repo 就有上手說明。
+
+```bash
+git clone https://github.com/timcsy/auto-k8s.git && cd auto-k8s
+```
+
+| 工具 | 怎麼用 |
+|---|---|
+| **OpenAI Codex CLI** | 原生讀 `AGENTS.md`；`SKILL.md` 放進其 skills 目錄即可被呼叫 |
+| **Gemini CLI** | 讀 `AGENTS.md`；支援 `SKILL.md` |
+| **Cursor** | 原生讀 `AGENTS.md`；`SKILL.md` 需手動放到其 skills 位置 |
+| **GitHub Copilot** | 讀 `AGENTS.md`；透過 VS Code agent skills 用 `SKILL.md` |
+| **Windsurf** | 原生讀 `AGENTS.md`（亦可把流程改寫成 `.windsurf/workflows/`） |
+| **純人類 / 無 AI** | 把 `skills/*/SKILL.md` 當 runbook，照 `k3s-vps-deploy` 順序手動貼指令執行 |
+
+> `AGENTS.md` 是常駐說明（規則/入口），`SKILL.md` 是可呼叫的技能；兩者互補。各工具放置 `SKILL.md` 的確切位置請參考該工具文件或 [agentskills.io](https://agentskills.io)。
+
 ---
 
 ## 使用方式

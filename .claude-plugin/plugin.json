@@ -1,0 +1,10 @@
+{
+  "name": "k3s-vps",
+  "description": "在 VPS 上端到端部署 k3s + domain-manager + DNS/SSL 的一組 skills：環境偵測、安裝 k3s、遷移既有反代、部署 domain-manager 與 cert-manager、DNS 委派診斷與自動簽憑證、產生可攜 kubeconfig。",
+  "version": "0.1.0",
+  "author": {
+    "name": "timcsy"
+  },
+  "homepage": "https://github.com/timcsy/auto-k8s",
+  "keywords": ["k3s", "kubernetes", "traefik", "cert-manager", "letsencrypt", "dns", "ssl", "domain-manager", "vps"]
+}

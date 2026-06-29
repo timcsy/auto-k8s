@@ -1,0 +1,10 @@
+# kubeconfig（內含 cluster-admin 憑證，切勿提交）
+kubeconfig/
+*.kubeconfig
+kubeconfig.yaml
+
+# 一般敏感檔
+*.key
+*.pem
+.env
+.env.*

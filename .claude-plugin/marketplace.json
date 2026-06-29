@@ -1,0 +1,14 @@
+{
+  "name": "auto-k8s",
+  "owner": {
+    "name": "timcsy"
+  },
+  "description": "VPS 上自動部署 k3s + DNS + SSL 的 Claude Code skills。",
+  "plugins": [
+    {
+      "name": "k3s-vps",
+      "source": ".",
+      "description": "在 VPS 上端到端部署 k3s + domain-manager + DNS/SSL 的一組 skills（含環境偵測、既有反代遷移、cert-manager 自動簽憑證、可攜 kubeconfig）。"
+    }
+  ]
+}
